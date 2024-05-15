@@ -1,5 +1,6 @@
 flags 
 -y/n "." files as -A
 - * and / for files/dirs
-- maybe can just pass fields straight to ls without actually learning how to handle flags?
+- maybe can just pass fields straight to ls without actually learning how to handle flags? wouldn't work if there are Kalyba specific flags
+- should new working directory be the original the command was ran in, or the ending dir from Kalyba
 man page

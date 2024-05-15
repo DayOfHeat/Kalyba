@@ -8,7 +8,7 @@ Run `make clean install` in the installation folder
 
 # Use
 
-Use `Kalyba` to launch. 
+Use `kalyba` to launch. 
 
 # Config
 
