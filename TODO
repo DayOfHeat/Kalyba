@@ -1,0 +1,5 @@
+flags 
+-y/n "." files as -A
+- * and / for files/dirs
+- maybe can just pass fields straight to ls without actually learning how to handle flags?
+man page
