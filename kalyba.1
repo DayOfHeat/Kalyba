@@ -4,26 +4,25 @@
 .SH NAME
 kalyba \- A file lauching CLI written in bash
 .SH SYNOPSIS
-kalyba [-a|A] -s  
+kalyba [-AsFc]  
 .SH CONFIG
 Append 'fileType command' to config. See README for more info.
 .SH OPTIONS
-TBD, See TODO.
-
-.B -a 
-include . and .. in selection
 
 .B -A 
-exclude . and .. from selection
+excludes . and .. from selection
 
 .B -s 
 excludes files starting with . from selection
 
 .B -F 
-include * for files and / for directories
+includes * for files and / for directories
+
+.B -c
+disables clearing the ouput after each file selection
 
 .SH BUGS
-No known bugs.
+Not any known.
 .SH AUTHOR
 DayOfHeat
 .SH COPYRIGHT
