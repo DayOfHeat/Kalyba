@@ -1,3 +1,1 @@
-flags 
-- -A, -F, and -s not implemented
 make config work

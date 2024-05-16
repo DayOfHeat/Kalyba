@@ -1,11 +1,14 @@
 #!/bin/bash
 
-FLAGA=false
+HEADER="----------=Kalyba=----------"
+
+#FLAGA=false
 #FLAG_A=false
 FLAG_S=false
 FLAGF=false
 FLAG_C=false
-while getopts 'AsFc' FLAG; do
+LSFLAGS="-a"
+while getopts 'sFc' FLAG; do
   case "$FLAG" in
 #   a)
 #     echo "-a"
@@ -14,37 +17,42 @@ while getopts 'AsFc' FLAG; do
 #       exit 1
 #     fi
 #     FLAG_A=true;;
-    A)
+ #   A)
       #echo "-A"
 #       if [ $FLAG_A == true ]; then
 #         echo "-a annd -A are mutually exclusive. See man page for more info"
 #         exit 1
 #       fi
-      FLAGA=true;;
+#      FLAGA=true
+#      LSFLAGS+="A";;
     s)
       #echo "-s"
       FLAG_S=true;;
     F)
       #echo "-F"
-      FLAGF=true;;
+      FLAGF=true
+      LSFLAGS+="F";;
     c)
       #echo "-c"
       FLAG_C=true;;
     ?)
-      echo "script usage: kalyba [-AsFc]"
+      echo "script usage: kalyba [-sFc]"
       exit 1;;
   esac
 done
+
 if [ $FLAG_C == false ]; then 
   clear
-  echo "----------=Kalyba=----------"
+  echo $HEADER
 fi
 CURRENTDIR=$(pwd)
 while true; do  
-  IFS=' ' read -a OPTIONS <<< "$(echo $(ls -A $CURRENTDIR))"
+  IFS=' ' read -a OPTIONS <<< "$(echo $(ls ${LSFLAGS} $CURRENTDIR))" 
   OPTIONSWEXIT=("Exit")
   for opt in ${OPTIONS[@]}; do
-    OPTIONSWEXIT+=($opt)
+    if ( [ $FLAG_S == false ] && [ $opt != "." ] && [ $opt != "./" ] ) || [ ${opt:0:1} != "." ] || [ $opt == ".." ] || [ $opt == "../" ]; then  
+      OPTIONSWEXIT+=($opt)
+    fi
   done
   select NEWDIR in ${OPTIONSWEXIT[@]}; do
     if [ $NEWDIR == "Exit" ]; then
@@ -55,7 +63,7 @@ while true; do
       nvim "${CURRENTDIR}/${NEWDIR}"
       if [ $FLAG_C == false ]; then 
         clear
-        echo "----------=Kalyba=----------"
+        echo $HEADER
       fi
       break
       
@@ -64,7 +72,7 @@ while true; do
       #echo "$NEWDIR is a directory"
       if [ $FLAG_C == false ]; then 
         clear
-        echo "----------=Kalyba=----------"
+        echo $HEADER
       fi
       break
     else
