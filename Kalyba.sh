@@ -8,6 +8,8 @@ FLAG_S=false
 FLAGF=false
 FLAG_C=false
 LSFLAGS="-a"
+declare -A PROGRAMTABLE=( ["txt"]="nvim $" ["sh"]="bash $" ["system"]="doas nvim $" ["other"]="echo $" ["none"]="vim $")
+#declare -a PROGRAMTABLE=( CONFIG_GOES_HERE)
 while getopts 'sFc' FLAG; do
   case "$FLAG" in
 #   a)
@@ -59,10 +61,24 @@ while true; do
       echo "Quitting .."
       break 2
     elif [ -f "${CURRENTDIR}/${NEWDIR}" ]; then
-      #echo "$NEWDIR is a file"
-      nvim "${CURRENTDIR}/${NEWDIR}"
+      COMMAND=""
+      if [ ${NEWDIR:0:1} != "." ] && [ $(echo "$NEWDIR" | cut -s -d'.' -f2) ]; then
+        if [ "${PROGRAMTABLE[`echo "$NEWDIR" | cut -s -d'.' -f2`]}" != "" ]; then
+          COMMAND="${PROGRAMTABLE[`echo "$NEWDIR" | cut -s -d'.' -f2`]}"
+          #echo "$NEWDIR is a file"
+          #nvim "${CURRENTDIR}/${NEWDIR}"
+        else
+          COMMAND="${PROGRAMTABLE["other"]}"
+        fi
+      elif [ ${NEWDIR:0:1} == "." ]; then 
+        COMMAND="${PROGRAMTABLE["system"]}"
+      else
+        COMMAND="${PROGRAMTABLE["none"]}"
+      fi
+          ${COMMAND/\$/$CURRENTDIR/$NEWDIR}
+        #echo "$NEWDIR" | cut -s -d'.' -f2
       if [ $FLAG_C == false ]; then 
-        clear
+        #clear
         echo $HEADER
       fi
       break
