@@ -8,8 +8,8 @@ FLAG_S=false
 FLAGF=false
 FLAG_C=false
 LSFLAGS="-a"
-declare -A PROGRAMTABLE=( ["txt"]="nvim $" ["sh"]="bash $" ["system"]="doas nvim $" ["other"]="echo $" ["none"]="vim $")
-#declare -a PROGRAMTABLE=( CONFIG_GOES_HERE)
+#declare -A PROGRAMTABLE=( ["txt"]="nvim $" ["sh"]="bash $" ["system"]="doas nvim $" ["other"]="echo $" ["none"]="vim $")
+declare -A PROGRAMTABLE=( CONFIG_GOES_HERE)
 while getopts 'sFc' FLAG; do
   case "$FLAG" in
 #   a)

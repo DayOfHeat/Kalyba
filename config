@@ -1,2 +1,6 @@
 txt nvim $
 png gimp $
+system doas nvim $
+other echo $
+none nvim $
+tar.gz echo '$ is a tarball'
