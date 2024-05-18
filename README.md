@@ -1,7 +1,9 @@
 # Kalyba
 
-*A file launching CLI that believes Ranger was "very much mistaken"*
+*How fair! How modest! How discreet! How bashfully demure!*
 
+A simple and configurable file launching CLI
+ 
 # Installation
 
 Run `make clean install` in the installation folder
@@ -19,3 +21,4 @@ Edit `config` in the installation folder. Add new lines of the format `fileExten
 # Uninstalling
 
 Run `make uninstall` in the installation folder
+
