@@ -14,7 +14,7 @@ See man page for use flags.
 
 # Config
 
-Edit `config` in the installation folder. Add new lines of the format `fileExtention command` where `fileExtention` is without the period. `$` in a command is replaced with the file. For example, to make `.txt` files open in neovim, add `txt neovim $`. 
+Edit `config` in the installation folder. Add new lines of the format `fileExtention command` where `fileExtention` is without the period. `$` in a command is replaced with the file. For example, to make `.txt` files open in neovim, add `txt neovim $`. Use `system` for files starting with `.` such as `.xinit`. Use `none` for files without an extention, such as a `LICENSE` file. Use `other` for a file without another rule applied to it. 
 
 # Uninstalling
 

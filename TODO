@@ -1,1 +1,4 @@
-make config work
+Option to end cd'ed into ending directory
+POSIX compliance
+Better error handling for when the config is invalid
+Ability to comment out config lines

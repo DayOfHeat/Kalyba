@@ -8,6 +8,7 @@ FLAG_S=false
 FLAGF=false
 FLAG_C=false
 LSFLAGS="-a"
+BACKDELIM="\/*"
 #declare -A PROGRAMTABLE=( ["txt"]="nvim $" ["sh"]="bash $" ["system"]="doas nvim $" ["other"]="echo $" ["none"]="vim $")
 declare -A PROGRAMTABLE=( CONFIG_GOES_HERE)
 while getopts 'sFc' FLAG; do
@@ -84,7 +85,12 @@ while true; do
       break
       
     elif [ -d "${CURRENTDIR}/${NEWDIR}" ]; then
-      CURRENTDIR="${CURRENTDIR}/${NEWDIR}"
+      if [ "$NEWDIR" == ".." ] || [ "$NEWDIR" == "../" ]; then 
+        CURRENTDIR=${CURRENTDIR%$BACKDELIM}
+        echo "$CURRENTDIR"
+      else 
+        CURRENTDIR="${CURRENTDIR}/${NEWDIR}"
+      fi
       #echo "$NEWDIR is a directory"
       if [ $FLAG_C == false ]; then 
         clear
